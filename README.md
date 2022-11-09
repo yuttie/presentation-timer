@@ -3,7 +3,8 @@
 ## Usage
 - Configuration via a query string in URL:
     - `duration`: Presentation time in minutes, e.g. `duration=20`
-    - `bell`: Ring the bell at specified times (at most 3 times), e.g. `bell=15,18,20`
+    - `bell`: Ring the bell at specified times, e.g. `bell=15,18,20` to ring at 15, 18 and 20 minutes
+        - You can specify more than three, but only three kinds of bell sound are available
 - Just click/tap the page to start
 
 ## Examples
