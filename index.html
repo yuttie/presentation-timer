@@ -103,8 +103,8 @@
       computed: {
         progress() {
           const elapsed = this.now - this.startTime;
-          const total = 1000 * 60 * this.duration;
-          return 100 * elapsed / total;
+          const total = this.duration;
+          return 100 * (elapsed / 1000 / 60) / total;
         },
         minutes() {
           const elapsed = this.now - this.startTime;
