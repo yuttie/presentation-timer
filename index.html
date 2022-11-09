@@ -52,7 +52,7 @@
   <body>
     <div id="app">
       <div v-if="duration !== null" id="progress" v-bind:style="{ width: progress + '%' }"></div>
-      <div id="time">{{ format(minutes, 3) }}:{{ format(seconds, 2) }}</div>
+      <div id="time">{{ minutes }}:{{ format(seconds, 2) }}</div>
     </div>
     <script type="module">
     import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
