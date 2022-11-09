@@ -89,6 +89,7 @@
                 break;
             }
           }
+          document.title = `Presentation Timer (${this.duration} min., bells at ${this.bells.map((b) => b.minutes).join(', ')} mins.)`;
         }
       },
       data() {
