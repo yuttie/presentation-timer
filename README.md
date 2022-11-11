@@ -5,6 +5,8 @@
     - `duration`: Presentation time in minutes, e.g. `duration=20`
     - `bell`: Ring the bell at specified times, e.g. `bell=15,18,20` to ring at 15, 18 and 20 minutes
         - You can specify more than three, but only three kinds of bell sound are available
+    - `rev`: Reverse mode in which remaining time is shown, e.g. `rev=true` (default) or `rev=false`
+        - This does NOT change the interpretation of `bell` parameter values
 - Just click/tap the page to start
 
 ## Examples
