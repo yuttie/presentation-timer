@@ -54,7 +54,7 @@
   <body>
     <div id="app">
       <div v-if="duration !== null" id="progress" v-bind:style="{ width: progress + '%' }"></div>
-      <div id="time">{{ minutes }}:{{ format(seconds, 2) }}</div>
+      <div id="time">{{ duration !== null && reverse && progress > 100 ? '-' : '' }}{{ minutes }}:{{ format(seconds, 2) }}</div>
     </div>
     <script type="module">
     import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
@@ -89,6 +89,17 @@
                   return bell
                 });
                 break;
+              case 'rev':
+                if (value === 'true') {
+                  this.reverse = true;
+                }
+                else if (value === 'false') {
+                  this.reverse = false;
+                }
+                else {
+                  throw '"rev" option must be either true or false.'
+                }
+                break;
             }
           }
           document.title = `⏲ ${this.duration} min, 🛎 ${this.bells.map((b) => b.minutes).join(', ')} min | Presentation Timer`;
@@ -101,21 +112,26 @@
           now: performance.now(),
           duration: null,
           bells: null,
+          reverse: true,
         };
       },
       computed: {
         progress() {
           const elapsed = this.now - this.startTime;
-          const total = this.duration;
-          return 100 * (elapsed / 1000 / 60) / total;
+          const total = this.duration * 60 * 1000;
+          return 100 * elapsed / total;
         },
         minutes() {
           const elapsed = this.now - this.startTime;
-          return Math.floor(elapsed / 1000 / 60);
+          const total = this.duration * 60 * 1000;
+          const time = this.reverse ? total - elapsed : elapsed;
+          return Math.abs(Math.trunc(time / 1000 / 60));
         },
         seconds() {
           const elapsed = this.now - this.startTime;
-          return Math.floor(elapsed / 1000 % 60);
+          const total = this.duration * 60 * 1000;
+          const time = this.reverse ? total - elapsed : elapsed;
+          return Math.abs(Math.trunc(time / 1000 % 60));
         },
       },
       methods: {
